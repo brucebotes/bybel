@@ -11988,9 +11988,9 @@
     }
     initialize() {
       console.log("Initialize interlinear-bible internals");
-      let url = `${window.origin}/web/resources/${this._versionName}.txt`;
+      let url = `${window.origin}/bybel/web/resources/${this._versionName}.txt`;
       loadVersion(this._versionName, url).then(() => {
-        url = `${window.origin}/web/resources/${this._altVersionName}.txt`;
+        url = `${window.origin}/bybel/web/resources/${this._altVersionName}.txt`;
         loadVersion(this._altVersionName, url).then(() => {
           this._setVerses();
         }).catch((err) => console.log("Error loading bibles", err));
@@ -12300,7 +12300,7 @@
         objectStore.createIndex("verse", "verse", { unique: false });
         objectStore.transaction.oncomplete = () => {
           try {
-            const url = `${window.origin}/web/resources/tsk.txt`;
+            const url = `${window.origin}/bybel/web/resources/tsk.txt`;
             loadTSK(url).then((tsk) => {
               console.log("tsk loaded!");
               const xrefObjectStore = db.transaction("xref", "readwrite").objectStore("xref");
