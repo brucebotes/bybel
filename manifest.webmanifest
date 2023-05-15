@@ -1,0 +1,22 @@
+{
+  "short_name": "1953/KJV interlineêre Bybel met TSK",
+  "name": "1953/KJV interlineêre Bybel met TSK",
+  "description": "1953 Afrikaans / KJV Engels interlineêre Bybel met TSK kruisverwysings",
+  "icons": [
+    {
+      "src": "/bybel/web/logo-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/bybel/web/logo-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "scope": "/bybel/",
+  "start_url": "/bybel/",
+  "background_color": "#2d2c2c",
+  "theme_color": "#2d2c2c",
+  "display": "standalone"
+}
