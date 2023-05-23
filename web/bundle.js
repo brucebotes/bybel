@@ -11931,7 +11931,7 @@
   var googlish_default = googlish;
 
   // bundle/src/components/InterlinearBible.ts
-  var githubProject = "/byble";
+  var githubProject = "/bybel";
   var InterLinearBible = class extends s4 {
     constructor() {
       super();

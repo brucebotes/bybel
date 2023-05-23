@@ -2931,17 +2931,17 @@
     }
   },
   "outputs": {
-    "web/bundle.js.map": {
+    "cmd/github.io/pages/web/bundle.js.map": {
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 1069628
+      "bytes": 1071041
     },
-    "web/bundle.js": {
+    "cmd/github.io/pages/web/bundle.js": {
       "imports": [],
       "exports": [],
       "entryPoint": "bundle/src/main.ts",
-      "cssBundle": "web/bundle.css",
+      "cssBundle": "cmd/github.io/pages/web/bundle.css",
       "inputs": {
         "bundle/node_modules/@lit/reactive-element/css-tag.js": {
           "bytesInOutput": 1984
@@ -3406,7 +3406,7 @@
           "bytesInOutput": 757
         },
         "bundle/src/components/InterlinearBible.ts": {
-          "bytesInOutput": 7067
+          "bytesInOutput": 7073
         },
         "bundle/node_modules/immer/dist/immer.esm.mjs": {
           "bytesInOutput": 16058
@@ -3418,15 +3418,15 @@
           "bytesInOutput": 3528
         }
       },
-      "bytes": 630021
+      "bytes": 630027
     },
-    "web/bundle.css.map": {
+    "cmd/github.io/pages/web/bundle.css.map": {
       "imports": [],
       "exports": [],
       "inputs": {},
-      "bytes": 357
+      "bytes": 366
     },
-    "web/bundle.css": {
+    "cmd/github.io/pages/web/bundle.css": {
       "imports": [],
       "inputs": {
         "bundle/src/style.css": {
