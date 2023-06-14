@@ -418,6 +418,7 @@
       gap: 1rem;
       transition: 0.5s ease-in-out;
       backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
       margin: 8px;
     }
     .controls-container {
