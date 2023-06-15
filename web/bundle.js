@@ -381,7 +381,7 @@
             @input=${this._updateFilterText}
           ></mwc-textfield>
           <div class="controls-checkbox">
-            <mwc-formfield label="Case senititive">
+            <mwc-formfield label="Letter">
               <mwc-checkbox
                 ?checked=${this._caseSensitive}
                 @change=${this._toggleCaseSensitive}
@@ -389,7 +389,7 @@
             </mwc-formfield>
           </div>
           <div class="controls-checkbox">
-            <mwc-formfield label="full words">
+            <mwc-formfield label="Woord">
               <mwc-checkbox
                 ?checked=${this._fullWords}
                 @change=${this._toggleFullWords}
