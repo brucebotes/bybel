@@ -440,11 +440,12 @@
       justify-content: space-between;
     }
     .controls-input {
-      flex: 2;
+      flex-grow: 2;
     }
     .contols-checkbox {
       display: flex;
       align-items: center;
+      flex-shrink: 1;
     }
     .bible {
       margin: 0px 0px 0px 0px;
