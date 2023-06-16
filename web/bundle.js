@@ -522,7 +522,7 @@
     `}};ae.loadingIXDB=!1,ae.styles=L`
       :host {
         display: block; /* customElement defaults to inline!!*/
-        height: 100vh;
+        height: 98vh;
         padding: 0px 5px 5px 5px;
       }
     `,D([I("mwc-drawer")],ae.prototype,"drawer",2),D([ai({context:ft}),C()],ae.prototype,"_ixdb",2),D([C()],ae.prototype,"_isDrawOpen",2),D([C()],ae.prototype,"_isModalOpen",2),D([C()],ae.prototype,"_num_chapters",2),D([C()],ae.prototype,"_selected_chapter",2),D([C()],ae.prototype,"_selected_book",2),ae=D([O("app-web-component")],ae);})();
