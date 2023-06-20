@@ -1,9 +1,11 @@
 /* Basis CSS */
 html {
   font-family: 'Roboto', sans-serif;
+  height: 100vh;
 }
 
 body {
   margin: 0px;
+  overflow-y: hidden;
 }
 
