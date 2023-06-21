@@ -1,8 +1,9 @@
 import ShoelaceElement from '../../internal/shoelace-element';
-import type { CSSResultGroup } from 'lit';
+import type { CSSResultGroup, HTMLTemplateResult } from 'lit';
 export default class SlIcon extends ShoelaceElement {
     static styles: CSSResultGroup;
-    private static resolveIcon;
+    private initialRender;
+    private resolveIcon;
     private svg;
     name?: string;
     src?: string;
@@ -14,7 +15,7 @@ export default class SlIcon extends ShoelaceElement {
     private getUrl;
     handleLabelChange(): void;
     setIcon(): Promise<void>;
-    render(): SVGElement | null;
+    render(): SVGElement | HTMLTemplateResult | null;
 }
 declare global {
     interface HTMLElementTagNameMap {

@@ -38,3 +38,10 @@ export async function moveMouseOnElement(el, position = 'center', offsetX = 0, o
     const { clickX, clickY } = determineMousePosition(el, position, offsetX, offsetY);
     await sendMouse({ type: 'move', position: [clickX, clickY] });
 }
+export async function dragElement(el, deltaX = 0, deltaY = 0) {
+    await moveMouseOnElement(el);
+    await sendMouse({ type: 'down' });
+    const { clickX, clickY } = determineMousePosition(el, 'center', deltaX, deltaY);
+    await sendMouse({ type: 'move', position: [clickX, clickY] });
+    await sendMouse({ type: 'up' });
+}

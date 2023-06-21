@@ -3,7 +3,6 @@ import ShoelaceElement from '../../internal/shoelace-element';
 import type { CSSResultGroup } from 'lit';
 import type SlMenu from '../menu/menu';
 import type SlPopup from '../popup/popup';
-import type SlSelectEvent from '../../events/sl-select';
 export default class SlDropdown extends ShoelaceElement {
     static styles: CSSResultGroup;
     popup: SlPopup;
@@ -23,10 +22,10 @@ export default class SlDropdown extends ShoelaceElement {
     disconnectedCallback(): void;
     focusOnTrigger(): void;
     getMenu(): SlMenu | undefined;
-    handleKeyDown(event: KeyboardEvent): void;
-    handleDocumentKeyDown(event: KeyboardEvent): void;
-    handleDocumentMouseDown(event: MouseEvent): void;
-    handlePanelSelect(event: SlSelectEvent): void;
+    private handleKeyDown;
+    private handleDocumentKeyDown;
+    private handleDocumentMouseDown;
+    private handlePanelSelect;
     handleTriggerClick(): void;
     handleTriggerKeyDown(event: KeyboardEvent): void;
     handleTriggerKeyUp(event: KeyboardEvent): void;

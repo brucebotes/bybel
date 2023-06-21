@@ -1,13 +1,29 @@
 import {
-  SlSpinner
-} from "../../chunks/chunk.6FLA54KR.js";
-import "../../chunks/chunk.TA75SLJE.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import { customElement } from "lit/decorators.js";
+import { html } from "lit";
+import { LocalizeController } from "../../utilities/localize";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./spinner.styles";
+let SlSpinner = class extends ShoelaceElement {
+  constructor() {
+    super(...arguments);
+    this.localize = new LocalizeController(this);
+  }
+  render() {
+    return html`
+      <svg part="base" class="spinner" role="progressbar" aria-valuetext=${this.localize.term("loading")}>
+        <circle class="spinner__track"></circle>
+        <circle class="spinner__indicator"></circle>
+      </svg>
+    `;
+  }
+};
+SlSpinner.styles = styles;
+SlSpinner = __decorateClass([
+  customElement("sl-spinner")
+], SlSpinner);
 export {
   SlSpinner as default
 };

@@ -1,33 +1,245 @@
 import {
-  SlDialog
-} from "../../chunks/chunk.RTZG4SBY.js";
-import "../../chunks/chunk.XQUAZ3XN.js";
-import "../../chunks/chunk.RK73WSZS.js";
-import "../../chunks/chunk.G7G6UAKI.js";
-import "../../chunks/chunk.ERACEVGU.js";
-import "../../chunks/chunk.KRP3ULQL.js";
-import "../../chunks/chunk.UL4X2GHI.js";
-import "../../chunks/chunk.OAQT3AUQ.js";
-import "../../chunks/chunk.B4BZKR24.js";
-import "../../chunks/chunk.65AZ2BGN.js";
-import "../../chunks/chunk.IJY6XTKC.js";
-import "../../chunks/chunk.V47DPYLL.js";
-import "../../chunks/chunk.3IYPB6RR.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.B4225MTJ.js";
-import "../../chunks/chunk.VG6XY36X.js";
-import "../../chunks/chunk.P7ZG6EMR.js";
-import "../../chunks/chunk.I33L3NO6.js";
-import "../../chunks/chunk.DAGT3MMF.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.3Y6SB6QS.js";
-import "../../chunks/chunk.ORW72H2K.js";
-import "../../chunks/chunk.UP75L23G.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import "../icon-button/icon-button";
+import { animateTo, stopAnimations } from "../../internal/animate";
+import { classMap } from "lit/directives/class-map.js";
+import { customElement, property, query } from "lit/decorators.js";
+import { getAnimation, setDefaultAnimation } from "../../utilities/animation-registry";
+import { HasSlotController } from "../../internal/slot";
+import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
+import { LocalizeController } from "../../utilities/localize";
+import { lockBodyScrolling, unlockBodyScrolling } from "../../internal/scroll";
+import { waitForEvent } from "../../internal/event";
+import { watch } from "../../internal/watch";
+import Modal from "../../internal/modal";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./dialog.styles";
+let SlDialog = class extends ShoelaceElement {
+  constructor() {
+    super(...arguments);
+    this.hasSlotController = new HasSlotController(this, "footer");
+    this.localize = new LocalizeController(this);
+    this.modal = new Modal(this);
+    this.open = false;
+    this.label = "";
+    this.noHeader = false;
+    this.handleDocumentKeyDown = (event) => {
+      if (this.open && event.key === "Escape") {
+        event.stopPropagation();
+        this.requestClose("keyboard");
+      }
+    };
+  }
+  firstUpdated() {
+    this.dialog.hidden = !this.open;
+    if (this.open) {
+      this.addOpenListeners();
+      this.modal.activate();
+      lockBodyScrolling(this);
+    }
+  }
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    unlockBodyScrolling(this);
+  }
+  requestClose(source) {
+    const slRequestClose = this.emit("sl-request-close", {
+      cancelable: true,
+      detail: { source }
+    });
+    if (slRequestClose.defaultPrevented) {
+      const animation = getAnimation(this, "dialog.denyClose", { dir: this.localize.dir() });
+      animateTo(this.panel, animation.keyframes, animation.options);
+      return;
+    }
+    this.hide();
+  }
+  addOpenListeners() {
+    document.addEventListener("keydown", this.handleDocumentKeyDown);
+  }
+  removeOpenListeners() {
+    document.removeEventListener("keydown", this.handleDocumentKeyDown);
+  }
+  async handleOpenChange() {
+    if (this.open) {
+      this.emit("sl-show");
+      this.addOpenListeners();
+      this.originalTrigger = document.activeElement;
+      this.modal.activate();
+      lockBodyScrolling(this);
+      const autoFocusTarget = this.querySelector("[autofocus]");
+      if (autoFocusTarget) {
+        autoFocusTarget.removeAttribute("autofocus");
+      }
+      await Promise.all([stopAnimations(this.dialog), stopAnimations(this.overlay)]);
+      this.dialog.hidden = false;
+      requestAnimationFrame(() => {
+        const slInitialFocus = this.emit("sl-initial-focus", { cancelable: true });
+        if (!slInitialFocus.defaultPrevented) {
+          if (autoFocusTarget) {
+            autoFocusTarget.focus({ preventScroll: true });
+          } else {
+            this.panel.focus({ preventScroll: true });
+          }
+        }
+        if (autoFocusTarget) {
+          autoFocusTarget.setAttribute("autofocus", "");
+        }
+      });
+      const panelAnimation = getAnimation(this, "dialog.show", { dir: this.localize.dir() });
+      const overlayAnimation = getAnimation(this, "dialog.overlay.show", { dir: this.localize.dir() });
+      await Promise.all([
+        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options),
+        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options)
+      ]);
+      this.emit("sl-after-show");
+    } else {
+      this.emit("sl-hide");
+      this.removeOpenListeners();
+      this.modal.deactivate();
+      await Promise.all([stopAnimations(this.dialog), stopAnimations(this.overlay)]);
+      const panelAnimation = getAnimation(this, "dialog.hide", { dir: this.localize.dir() });
+      const overlayAnimation = getAnimation(this, "dialog.overlay.hide", { dir: this.localize.dir() });
+      await Promise.all([
+        animateTo(this.overlay, overlayAnimation.keyframes, overlayAnimation.options).then(() => {
+          this.overlay.hidden = true;
+        }),
+        animateTo(this.panel, panelAnimation.keyframes, panelAnimation.options).then(() => {
+          this.panel.hidden = true;
+        })
+      ]);
+      this.dialog.hidden = true;
+      this.overlay.hidden = false;
+      this.panel.hidden = false;
+      unlockBodyScrolling(this);
+      const trigger = this.originalTrigger;
+      if (typeof (trigger == null ? void 0 : trigger.focus) === "function") {
+        setTimeout(() => trigger.focus());
+      }
+      this.emit("sl-after-hide");
+    }
+  }
+  /** Shows the dialog. */
+  async show() {
+    if (this.open) {
+      return void 0;
+    }
+    this.open = true;
+    return waitForEvent(this, "sl-after-show");
+  }
+  /** Hides the dialog */
+  async hide() {
+    if (!this.open) {
+      return void 0;
+    }
+    this.open = false;
+    return waitForEvent(this, "sl-after-hide");
+  }
+  render() {
+    return html`
+      <div
+        part="base"
+        class=${classMap({
+      dialog: true,
+      "dialog--open": this.open,
+      "dialog--has-footer": this.hasSlotController.test("footer")
+    })}
+      >
+        <div part="overlay" class="dialog__overlay" @click=${() => this.requestClose("overlay")} tabindex="-1"></div>
+
+        <div
+          part="panel"
+          class="dialog__panel"
+          role="dialog"
+          aria-modal="true"
+          aria-hidden=${this.open ? "false" : "true"}
+          aria-label=${ifDefined(this.noHeader ? this.label : void 0)}
+          aria-labelledby=${ifDefined(!this.noHeader ? "title" : void 0)}
+          tabindex="0"
+        >
+          ${!this.noHeader ? html`
+                <header part="header" class="dialog__header">
+                  <h2 part="title" class="dialog__title" id="title">
+                    <slot name="label"> ${this.label.length > 0 ? this.label : String.fromCharCode(65279)} </slot>
+                  </h2>
+                  <div part="header-actions" class="dialog__header-actions">
+                    <slot name="header-actions"></slot>
+                    <sl-icon-button
+                      part="close-button"
+                      exportparts="base:close-button__base"
+                      class="dialog__close"
+                      name="x-lg"
+                      label=${this.localize.term("close")}
+                      library="system"
+                      @click="${() => this.requestClose("close-button")}"
+                    ></sl-icon-button>
+                  </div>
+                </header>
+              ` : ""}
+
+          <slot part="body" class="dialog__body"></slot>
+
+          <footer part="footer" class="dialog__footer">
+            <slot name="footer"></slot>
+          </footer>
+        </div>
+      </div>
+    `;
+  }
+};
+SlDialog.styles = styles;
+__decorateClass([
+  query(".dialog")
+], SlDialog.prototype, "dialog", 2);
+__decorateClass([
+  query(".dialog__panel")
+], SlDialog.prototype, "panel", 2);
+__decorateClass([
+  query(".dialog__overlay")
+], SlDialog.prototype, "overlay", 2);
+__decorateClass([
+  property({ type: Boolean, reflect: true })
+], SlDialog.prototype, "open", 2);
+__decorateClass([
+  property({ reflect: true })
+], SlDialog.prototype, "label", 2);
+__decorateClass([
+  property({ attribute: "no-header", type: Boolean, reflect: true })
+], SlDialog.prototype, "noHeader", 2);
+__decorateClass([
+  watch("open", { waitUntilFirstUpdate: true })
+], SlDialog.prototype, "handleOpenChange", 1);
+SlDialog = __decorateClass([
+  customElement("sl-dialog")
+], SlDialog);
+setDefaultAnimation("dialog.show", {
+  keyframes: [
+    { opacity: 0, scale: 0.8 },
+    { opacity: 1, scale: 1 }
+  ],
+  options: { duration: 250, easing: "ease" }
+});
+setDefaultAnimation("dialog.hide", {
+  keyframes: [
+    { opacity: 1, scale: 1 },
+    { opacity: 0, scale: 0.8 }
+  ],
+  options: { duration: 250, easing: "ease" }
+});
+setDefaultAnimation("dialog.denyClose", {
+  keyframes: [{ scale: 1 }, { scale: 1.02 }, { scale: 1 }],
+  options: { duration: 250 }
+});
+setDefaultAnimation("dialog.overlay.show", {
+  keyframes: [{ opacity: 0 }, { opacity: 1 }],
+  options: { duration: 250 }
+});
+setDefaultAnimation("dialog.overlay.hide", {
+  keyframes: [{ opacity: 1 }, { opacity: 0 }],
+  options: { duration: 250 }
+});
 export {
   SlDialog as default
 };

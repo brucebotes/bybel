@@ -10,8 +10,7 @@ export default class SlMenuItem extends ShoelaceElement {
     checked: boolean;
     value: string;
     disabled: boolean;
-    connectedCallback(): void;
-    disconnectedCallback(): void;
+    constructor();
     private handleDefaultSlotChange;
     private handleHostClick;
     handleCheckedChange(): void;

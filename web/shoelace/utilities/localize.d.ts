@@ -1,4 +1,4 @@
-import '../translations/en';
+import '../translations/en.js';
 import { LocalizeController as DefaultLocalizationController } from '@shoelace-style/localize';
 import type { Translation as DefaultTranslation } from '@shoelace-style/localize';
 export declare class LocalizeController extends DefaultLocalizationController<Translation> {

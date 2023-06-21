@@ -1,14 +1,34 @@
-import {
-  getIconLibrary,
-  registerIconLibrary,
-  unregisterIconLibrary,
-  unwatchIcon,
-  watchIcon
-} from "../../chunks/chunk.VG6XY36X.js";
-import "../../chunks/chunk.P7ZG6EMR.js";
-import "../../chunks/chunk.I33L3NO6.js";
-import "../../chunks/chunk.3Y6SB6QS.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import defaultLibrary from "./library.default";
+import systemLibrary from "./library.system";
+let registry = [defaultLibrary, systemLibrary];
+let watchedIcons = [];
+function watchIcon(icon) {
+  watchedIcons.push(icon);
+}
+function unwatchIcon(icon) {
+  watchedIcons = watchedIcons.filter((el) => el !== icon);
+}
+function getIconLibrary(name) {
+  return registry.find((lib) => lib.name === name);
+}
+function registerIconLibrary(name, options) {
+  unregisterIconLibrary(name);
+  registry.push({
+    name,
+    resolver: options.resolver,
+    mutator: options.mutator,
+    spriteSheet: options.spriteSheet
+  });
+  watchedIcons.forEach((icon) => {
+    if (icon.library === name) {
+      icon.setIcon();
+    }
+  });
+}
+function unregisterIconLibrary(name) {
+  registry = registry.filter((lib) => lib.name !== name);
+}
 export {
   getIconLibrary,
   registerIconLibrary,

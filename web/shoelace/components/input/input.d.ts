@@ -10,6 +10,8 @@ export default class SlInput extends ShoelaceElement implements ShoelaceFormCont
     input: HTMLInputElement;
     private hasFocus;
     title: string;
+    private __numberInput;
+    private __dateInput;
     type: 'date' | 'datetime-local' | 'email' | 'number' | 'password' | 'search' | 'tel' | 'text' | 'time' | 'url';
     name: string;
     value: string;

@@ -1,16 +1,10 @@
 import {
-  en_default
-} from "../chunks/chunk.MQ6XKY3Z.js";
-import {
-  registerTranslation
-} from "../chunks/chunk.L2X53Y67.js";
-import {
   __spreadProps,
   __spreadValues
-} from "../chunks/chunk.LKA3TPUC.js";
-
-// src/translations/en-gb.ts
-var translation = __spreadProps(__spreadValues({}, en_default), {
+} from "../chunks/chunk.6M63UXML.js";
+import { registerTranslation } from "../utilities/localize";
+import baseTranslation from "./en";
+const translation = __spreadProps(__spreadValues({}, baseTranslation), {
   $code: "en-GB",
   $name: "English (United Kingdom)",
   selectAColorFromTheScreen: "Select a colour from the screen",

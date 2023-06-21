@@ -1,9 +1,24 @@
-import {
-  tab_panel_styles_default
-} from "../../chunks/chunk.F6XS2O2X.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles";
+var tab_panel_styles_default = css`
+  ${componentStyles}
+
+  :host {
+    --padding: 0;
+
+    display: none;
+  }
+
+  :host([active]) {
+    display: block;
+  }
+
+  .tab-panel {
+    display: block;
+    padding: var(--padding);
+  }
+`;
 export {
   tab_panel_styles_default as default
 };

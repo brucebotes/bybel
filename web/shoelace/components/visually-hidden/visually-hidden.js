@@ -1,11 +1,19 @@
 import {
-  SlVisuallyHidden
-} from "../../chunks/chunk.VEZFXLS5.js";
-import "../../chunks/chunk.UFTP7SAL.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import { customElement } from "lit/decorators.js";
+import { html } from "lit";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./visually-hidden.styles";
+let SlVisuallyHidden = class extends ShoelaceElement {
+  render() {
+    return html` <slot></slot> `;
+  }
+};
+SlVisuallyHidden.styles = styles;
+SlVisuallyHidden = __decorateClass([
+  customElement("sl-visually-hidden")
+], SlVisuallyHidden);
 export {
   SlVisuallyHidden as default
 };

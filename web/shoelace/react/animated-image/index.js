@@ -1,19 +1,16 @@
-import {
-  animated_image_default
-} from "../../chunks/chunk.2SILNUUT.js";
-import "../../chunks/chunk.PCQAXBXR.js";
-import "../../chunks/chunk.P63W3WLW.js";
-import "../../chunks/chunk.B4225MTJ.js";
-import "../../chunks/chunk.VG6XY36X.js";
-import "../../chunks/chunk.P7ZG6EMR.js";
-import "../../chunks/chunk.I33L3NO6.js";
-import "../../chunks/chunk.DAGT3MMF.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.3Y6SB6QS.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/animated-image/animated-image.js";
+var animated_image_default = createComponent({
+  tagName: "sl-animated-image",
+  elementClass: Component,
+  react: React,
+  events: {
+    onSlLoad: "sl-load",
+    onSlError: "sl-error"
+  }
+});
 export {
   animated_image_default as default
 };

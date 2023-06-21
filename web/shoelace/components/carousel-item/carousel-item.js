@@ -1,11 +1,26 @@
 import {
-  SlCarouselItem
-} from "../../chunks/chunk.TDICIOWC.js";
-import "../../chunks/chunk.NNN7KQVN.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import { customElement } from "lit/decorators.js";
+import { html } from "lit";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./carousel-item.styles";
+let SlCarouselItem = class extends ShoelaceElement {
+  static isCarouselItem(node) {
+    return node instanceof Element && node.getAttribute("aria-roledescription") === "slide";
+  }
+  connectedCallback() {
+    super.connectedCallback();
+    this.setAttribute("role", "group");
+  }
+  render() {
+    return html` <slot></slot> `;
+  }
+};
+SlCarouselItem.styles = styles;
+SlCarouselItem = __decorateClass([
+  customElement("sl-carousel-item")
+], SlCarouselItem);
 export {
   SlCarouselItem as default
 };

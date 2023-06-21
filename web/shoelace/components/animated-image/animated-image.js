@@ -1,18 +1,104 @@
 import {
-  SlAnimatedImage
-} from "../../chunks/chunk.PCQAXBXR.js";
-import "../../chunks/chunk.P63W3WLW.js";
-import "../../chunks/chunk.B4225MTJ.js";
-import "../../chunks/chunk.VG6XY36X.js";
-import "../../chunks/chunk.P7ZG6EMR.js";
-import "../../chunks/chunk.I33L3NO6.js";
-import "../../chunks/chunk.DAGT3MMF.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.3Y6SB6QS.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import "../icon/icon";
+import { customElement, property, query, state } from "lit/decorators.js";
+import { html } from "lit";
+import { watch } from "../../internal/watch";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./animated-image.styles";
+let SlAnimatedImage = class extends ShoelaceElement {
+  constructor() {
+    super(...arguments);
+    this.isLoaded = false;
+  }
+  handleClick() {
+    this.play = !this.play;
+  }
+  handleLoad() {
+    const canvas = document.createElement("canvas");
+    const { width, height } = this.animatedImage;
+    canvas.width = width;
+    canvas.height = height;
+    canvas.getContext("2d").drawImage(this.animatedImage, 0, 0, width, height);
+    this.frozenFrame = canvas.toDataURL("image/gif");
+    if (!this.isLoaded) {
+      this.emit("sl-load");
+      this.isLoaded = true;
+    }
+  }
+  handleError() {
+    this.emit("sl-error");
+  }
+  handlePlayChange() {
+    if (this.play) {
+      this.animatedImage.src = "";
+      this.animatedImage.src = this.src;
+    }
+  }
+  handleSrcChange() {
+    this.isLoaded = false;
+  }
+  render() {
+    return html`
+      <div class="animated-image">
+        <img
+          class="animated-image__animated"
+          src=${this.src}
+          alt=${this.alt}
+          crossorigin="anonymous"
+          aria-hidden=${this.play ? "false" : "true"}
+          @click=${this.handleClick}
+          @load=${this.handleLoad}
+          @error=${this.handleError}
+        />
+
+        ${this.isLoaded ? html`
+              <img
+                class="animated-image__frozen"
+                src=${this.frozenFrame}
+                alt=${this.alt}
+                aria-hidden=${this.play ? "true" : "false"}
+                @click=${this.handleClick}
+              />
+
+              <div part="control-box" class="animated-image__control-box">
+                <slot name="play-icon"><sl-icon name="play-fill" library="system"></sl-icon></slot>
+                <slot name="pause-icon"><sl-icon name="pause-fill" library="system"></sl-icon></slot>
+              </div>
+            ` : ""}
+      </div>
+    `;
+  }
+};
+SlAnimatedImage.styles = styles;
+__decorateClass([
+  query(".animated-image__animated")
+], SlAnimatedImage.prototype, "animatedImage", 2);
+__decorateClass([
+  state()
+], SlAnimatedImage.prototype, "frozenFrame", 2);
+__decorateClass([
+  state()
+], SlAnimatedImage.prototype, "isLoaded", 2);
+__decorateClass([
+  property()
+], SlAnimatedImage.prototype, "src", 2);
+__decorateClass([
+  property()
+], SlAnimatedImage.prototype, "alt", 2);
+__decorateClass([
+  property({ type: Boolean, reflect: true })
+], SlAnimatedImage.prototype, "play", 2);
+__decorateClass([
+  watch("play", { waitUntilFirstUpdate: true })
+], SlAnimatedImage.prototype, "handlePlayChange", 1);
+__decorateClass([
+  watch("src")
+], SlAnimatedImage.prototype, "handleSrcChange", 1);
+SlAnimatedImage = __decorateClass([
+  customElement("sl-animated-image")
+], SlAnimatedImage);
 export {
   SlAnimatedImage as default
 };

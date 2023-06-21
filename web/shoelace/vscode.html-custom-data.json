@@ -35,23 +35,99 @@
       "references": []
     },
     {
-      "name": "sl-animated-image",
-      "description": "A component for displaying animated GIFs and WEBPs that play and pause on interaction.\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-load** - Emitted when the image loads successfully.\n- **sl-error** - Emitted when the image fails to load.\n\n### **Slots:**\n - **play-icon** - Optional play icon to use instead of the default. Works best with `<sl-icon>`.\n- **pause-icon** - Optional pause icon to use instead of the default. Works best with `<sl-icon>`.\n\n### **CSS Properties:**\n - **--control-box-size** - The size of the icon box. _(default: undefined)_\n- **--icon-size** - The size of the play/pause icons. _(default: undefined)_",
+      "name": "sl-animation",
+      "description": "Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes. Powered by the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-cancel** - Emitted when the animation is canceled.\n- **sl-finish** - Emitted when the animation finishes.\n- **sl-start** - Emitted when the animation starts or restarts.\n\n### **Methods:**\n - **cancel()** - Clears all keyframe effects caused by this animation and aborts its playback.\n- **finish()** - Sets the playback time to the end of the animation corresponding to the current playback direction.\n\n### **Slots:**\n - _default_ - The element to animate. Avoid slotting in more than one element, as subsequent ones will be ignored. To animate multiple elements, either wrap them in a single container or use multiple `<sl-animation>` elements.",
       "attributes": [
         {
-          "name": "src",
-          "description": "The path to the image to load.",
-          "values": []
-        },
-        {
-          "name": "alt",
-          "description": "A description of the image used by assistive devices.",
+          "name": "name",
+          "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
           "values": []
         },
         {
           "name": "play",
-          "description": "Plays the animation. When this attribute is remove, the animation will pause.",
+          "description": "Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when\nthe animation finishes or gets canceled.",
           "values": []
+        },
+        {
+          "name": "delay",
+          "description": "The number of milliseconds to delay the start of the animation.",
+          "values": []
+        },
+        {
+          "name": "direction",
+          "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.\n[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)",
+          "values": [{ "name": "PlaybackDirection" }]
+        },
+        {
+          "name": "duration",
+          "description": "The number of milliseconds each iteration of the animation takes to complete.",
+          "values": []
+        },
+        {
+          "name": "easing",
+          "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+          "values": []
+        },
+        {
+          "name": "end-delay",
+          "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+          "values": []
+        },
+        {
+          "name": "fill",
+          "description": "Sets how the animation applies styles to its target before and after its execution.",
+          "values": [{ "name": "FillMode" }]
+        },
+        {
+          "name": "iterations",
+          "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
+          "values": []
+        },
+        {
+          "name": "iteration-start",
+          "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+          "values": []
+        },
+        {
+          "name": "playback-rate",
+          "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+          "values": []
+        }
+      ],
+      "references": []
+    },
+    {
+      "name": "sl-avatar",
+      "description": "Avatars are used to represent a person or object.\n\n\n---\n\n\n\n\n### **Slots:**\n - **icon** - The default icon to use when no image or initials are present. Works best with `<sl-icon>`.\n\n### **CSS Properties:**\n - **--size** - The size of the avatar. _(default: undefined)_\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **icon** - The container that wraps the avatar's icon.\n- **initials** - The container that wraps the avatar's initials.\n- **image** - The avatar image. Only shown when the `image` attribute is set.",
+      "attributes": [
+        {
+          "name": "image",
+          "description": "The image source to use for the avatar.",
+          "values": []
+        },
+        {
+          "name": "label",
+          "description": "A label to use to describe the avatar to assistive devices.",
+          "values": []
+        },
+        {
+          "name": "initials",
+          "description": "Initials to use as a fallback when no image is available (1-2 characters max recommended).",
+          "values": []
+        },
+        {
+          "name": "loading",
+          "description": "Indicates how the browser should load the image.",
+          "values": [{ "name": "eager" }, { "name": "lazy" }]
+        },
+        {
+          "name": "shape",
+          "description": "The shape of the avatar.",
+          "values": [
+            { "name": "circle" },
+            { "name": "square" },
+            { "name": "rounded" }
+          ]
         }
       ],
       "references": []
@@ -97,27 +173,22 @@
       "references": []
     },
     {
-      "name": "sl-breadcrumb-item",
-      "description": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.\n\n\n---\n\n\n\n\n### **Slots:**\n - _default_ - The breadcrumb item's label.\n- **prefix** - An optional prefix, usually an icon or icon button.\n- **suffix** - An optional suffix, usually an icon or icon button.\n- **separator** - The separator to use for the breadcrumb item. This will only change the separator for this item. If you want to change it for all items in the group, set the separator on `<sl-breadcrumb>` instead.\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **label** - The breadcrumb item's label.\n- **prefix** - The container that wraps the prefix.\n- **suffix** - The container that wraps the suffix.\n- **separator** - The container that wraps the separator.",
+      "name": "sl-animated-image",
+      "description": "A component for displaying animated GIFs and WEBPs that play and pause on interaction.\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-load** - Emitted when the image loads successfully.\n- **sl-error** - Emitted when the image fails to load.\n\n### **Slots:**\n - **play-icon** - Optional play icon to use instead of the default. Works best with `<sl-icon>`.\n- **pause-icon** - Optional pause icon to use instead of the default. Works best with `<sl-icon>`.\n\n### **CSS Properties:**\n - **--control-box-size** - The size of the icon box. _(default: undefined)_\n- **--icon-size** - The size of the play/pause icons. _(default: undefined)_\n\n### **CSS Parts:**\n - **** - control-box - The container that surrounds the pause/play icons and provides their background.",
       "attributes": [
         {
-          "name": "href",
-          "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
+          "name": "src",
+          "description": "The path to the image to load.",
           "values": []
         },
         {
-          "name": "target",
-          "description": "Tells the browser where to open the link. Only used when `href` is set.",
-          "values": [
-            { "name": "_blank" },
-            { "name": "_parent" },
-            { "name": "_self" },
-            { "name": "_top" }
-          ]
+          "name": "alt",
+          "description": "A description of the image used by assistive devices.",
+          "values": []
         },
         {
-          "name": "rel",
-          "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
+          "name": "play",
+          "description": "Plays the animation. When this attribute is remove, the animation will pause.",
           "values": []
         }
       ],
@@ -267,98 +338,27 @@
       "references": []
     },
     {
-      "name": "sl-avatar",
-      "description": "Avatars are used to represent a person or object.\n\n\n---\n\n\n\n\n### **Slots:**\n - **icon** - The default icon to use when no image or initials are present. Works best with `<sl-icon>`.\n\n### **CSS Properties:**\n - **--size** - The size of the avatar. _(default: undefined)_\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **icon** - The container that wraps the avatar's icon.\n- **initials** - The container that wraps the avatar's initials.\n- **image** - The avatar image. Only shown when the `image` attribute is set.",
+      "name": "sl-breadcrumb-item",
+      "description": "Breadcrumb Items are used inside [breadcrumbs](/components/breadcrumb) to represent different links.\n\n\n---\n\n\n\n\n### **Slots:**\n - _default_ - The breadcrumb item's label.\n- **prefix** - An optional prefix, usually an icon or icon button.\n- **suffix** - An optional suffix, usually an icon or icon button.\n- **separator** - The separator to use for the breadcrumb item. This will only change the separator for this item. If you want to change it for all items in the group, set the separator on `<sl-breadcrumb>` instead.\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **label** - The breadcrumb item's label.\n- **prefix** - The container that wraps the prefix.\n- **suffix** - The container that wraps the suffix.\n- **separator** - The container that wraps the separator.",
       "attributes": [
         {
-          "name": "image",
-          "description": "The image source to use for the avatar.",
+          "name": "href",
+          "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
           "values": []
         },
         {
-          "name": "label",
-          "description": "A label to use to describe the avatar to assistive devices.",
-          "values": []
-        },
-        {
-          "name": "initials",
-          "description": "Initials to use as a fallback when no image is available (1-2 characters max recommended).",
-          "values": []
-        },
-        {
-          "name": "loading",
-          "description": "Indicates how the browser should load the image.",
-          "values": [{ "name": "eager" }, { "name": "lazy" }]
-        },
-        {
-          "name": "shape",
-          "description": "The shape of the avatar.",
+          "name": "target",
+          "description": "Tells the browser where to open the link. Only used when `href` is set.",
           "values": [
-            { "name": "circle" },
-            { "name": "square" },
-            { "name": "rounded" }
+            { "name": "_blank" },
+            { "name": "_parent" },
+            { "name": "_self" },
+            { "name": "_top" }
           ]
-        }
-      ],
-      "references": []
-    },
-    {
-      "name": "sl-animation",
-      "description": "Animate elements declaratively with nearly 100 baked-in presets, or roll your own with custom keyframes. Powered by the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-cancel** - Emitted when the animation is canceled.\n- **sl-finish** - Emitted when the animation finishes.\n- **sl-start** - Emitted when the animation starts or restarts.\n\n### **Methods:**\n - **cancel()** - Clears all keyframe effects caused by this animation and aborts its playback.\n- **finish()** - Sets the playback time to the end of the animation corresponding to the current playback direction.\n\n### **Slots:**\n - _default_ - The element to animate. Avoid slotting in more than one element, as subsequent ones will be ignored. To animate multiple elements, either wrap them in a single container or use multiple `<sl-animation>` elements.",
-      "attributes": [
-        {
-          "name": "name",
-          "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-          "values": []
         },
         {
-          "name": "play",
-          "description": "Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when\nthe animation finishes or gets canceled.",
-          "values": []
-        },
-        {
-          "name": "delay",
-          "description": "The number of milliseconds to delay the start of the animation.",
-          "values": []
-        },
-        {
-          "name": "direction",
-          "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.\n[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)",
-          "values": [{ "name": "PlaybackDirection" }]
-        },
-        {
-          "name": "duration",
-          "description": "The number of milliseconds each iteration of the animation takes to complete.",
-          "values": []
-        },
-        {
-          "name": "easing",
-          "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-          "values": []
-        },
-        {
-          "name": "end-delay",
-          "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-          "values": []
-        },
-        {
-          "name": "fill",
-          "description": "Sets how the animation applies styles to its target before and after its execution.",
-          "values": [{ "name": "FillMode" }]
-        },
-        {
-          "name": "iterations",
-          "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-          "values": []
-        },
-        {
-          "name": "iteration-start",
-          "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-          "values": []
-        },
-        {
-          "name": "playback-rate",
-          "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+          "name": "rel",
+          "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
           "values": []
         }
       ],
@@ -902,7 +902,7 @@
     },
     {
       "name": "sl-icon",
-      "description": "Icons are symbols that can be used to represent various options within an application.\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-load** - Emitted when the icon has loaded.\n- **sl-error** - Emitted when the icon fails to load due to an error.\n\n### **CSS Parts:**\n - **svg** - The internal SVG element.",
+      "description": "Icons are symbols that can be used to represent various options within an application.\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-load** - Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit.\n- **sl-error** - Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit.\n\n### **CSS Parts:**\n - **svg** - The internal SVG element.\n- **use** - The <use> element generated when using `spriteSheet: true`",
       "attributes": [
         {
           "name": "name",
@@ -1223,7 +1223,7 @@
     },
     {
       "name": "sl-menu-item",
-      "description": "Menu items provide options for the user to pick from in a menu.\n\n\n---\n\n\n\n\n### **Methods:**\n - **getTextLabel()** - Returns a text label based on the contents of the menu item's default slot.\n\n### **Slots:**\n - _default_ - The menu item's label.\n- **prefix** - Used to prepend an icon or similar element to the menu item.\n- **suffix** - Used to append an icon or similar element to the menu item.\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **checked-icon** - The checked icon, which is only visible when the menu item is checked.\n- **prefix** - The prefix container.\n- **label** - The menu item label.\n- **suffix** - The suffix container.",
+      "description": "Menu items provide options for the user to pick from in a menu.\n\n\n---\n\n\n\n\n### **Methods:**\n - **getTextLabel()** - Returns a text label based on the contents of the menu item's default slot.\n\n### **Slots:**\n - _default_ - The menu item's label.\n- **prefix** - Used to prepend an icon or similar element to the menu item.\n- **suffix** - Used to append an icon or similar element to the menu item.\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **checked-icon** - The checked icon, which is only visible when the menu item is checked.\n- **prefix** - The prefix container.\n- **label** - The menu item label.\n- **suffix** - The suffix container.\n- **submenu-icon** - The submenu icon, visible only when the menu item has a submenu (not yet implemented).",
       "attributes": [
         {
           "name": "type",
@@ -1737,6 +1737,18 @@
       "references": []
     },
     {
+      "name": "sl-resize-observer",
+      "description": "The Resize Observer component offers a thin, declarative interface to the [`ResizeObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver).\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-resize** - Emitted when the element is resized.\n\n### **Slots:**\n - _default_ - One or more elements to watch for resizing.",
+      "attributes": [
+        {
+          "name": "disabled",
+          "description": "Disables the observer.",
+          "values": []
+        }
+      ],
+      "references": []
+    },
+    {
       "name": "sl-relative-time",
       "description": "Outputs a localized time phrase relative to the current date and time.\n\n\n---\n\n\n",
       "attributes": [
@@ -1762,18 +1774,6 @@
         {
           "name": "sync",
           "description": "Keep the displayed value up to date as time passes.",
-          "values": []
-        }
-      ],
-      "references": []
-    },
-    {
-      "name": "sl-resize-observer",
-      "description": "The Resize Observer component offers a thin, declarative interface to the [`ResizeObserver API`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver).\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-resize** - Emitted when the element is resized.\n\n### **Slots:**\n - _default_ - One or more elements to watch for resizing.",
-      "attributes": [
-        {
-          "name": "disabled",
-          "description": "Disables the observer.",
           "values": []
         }
       ],
@@ -2324,7 +2324,7 @@
     },
     {
       "name": "sl-tree-item",
-      "description": "A tree item serves as a hierarchical node that lives inside a [tree](/components/tree).\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-expand** - Emitted when the tree item expands.\n- **sl-after-expand** - Emitted after the tree item expands and all animations are complete.\n- **sl-collapse** - Emitted when the tree item collapses.\n- **sl-after-collapse** - Emitted after the tree item collapses and all animations are complete.\n- **sl-lazy-change** - Emitted when the tree item's lazy state changes.\n- **sl-lazy-load** - Emitted when a lazy item is selected. Use this event to asynchronously load data and append items to the tree before expanding. After appending new items, remove the `lazy` attribute to remove the loading state and update the tree.\n\n### **Methods:**\n - **getChildrenItems({ includeDisabled = true }: _{ includeDisabled?: boolean }_): _SlTreeItem[]_** - Gets all the nested tree items in this node.\n\n### **Slots:**\n - _default_ - The default slot.\n- **expand-icon** - The icon to show when the tree item is expanded.\n- **collapse-icon** - The icon to show when the tree item is collapsed.\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **item** - The tree item's container. This element wraps everything except slotted tree item children.\n- **item--disabled** - Applied when the tree item is disabled.\n- **item--expanded** - Applied when the tree item is expanded.\n- **item--indeterminate** - Applied when the selection is indeterminate.\n- **item--selected** - Applied when the tree item is selected.\n- **indentation** - The tree item's indentation container.\n- **expand-button** - The container that wraps the tree item's expand button and spinner.\n- **label** - The tree item's label.\n- **children** - The container that wraps the tree item's nested children.",
+      "description": "A tree item serves as a hierarchical node that lives inside a [tree](/components/tree).\n\n\n---\n\n\n\n\n### **Events:**\n - **sl-expand** - Emitted when the tree item expands.\n- **sl-after-expand** - Emitted after the tree item expands and all animations are complete.\n- **sl-collapse** - Emitted when the tree item collapses.\n- **sl-after-collapse** - Emitted after the tree item collapses and all animations are complete.\n- **sl-lazy-change** - Emitted when the tree item's lazy state changes.\n- **sl-lazy-load** - Emitted when a lazy item is selected. Use this event to asynchronously load data and append items to the tree before expanding. After appending new items, remove the `lazy` attribute to remove the loading state and update the tree.\n\n### **Methods:**\n - **getChildrenItems({ includeDisabled = true }: _{ includeDisabled?: boolean }_): _SlTreeItem[]_** - Gets all the nested tree items in this node.\n\n### **Slots:**\n - _default_ - The default slot.\n- **expand-icon** - The icon to show when the tree item is expanded.\n- **collapse-icon** - The icon to show when the tree item is collapsed.\n\n### **CSS Parts:**\n - **base** - The component's base wrapper.\n- **item** - The tree item's container. This element wraps everything except slotted tree item children.\n- **item--disabled** - Applied when the tree item is disabled.\n- **item--expanded** - Applied when the tree item is expanded.\n- **item--indeterminate** - Applied when the selection is indeterminate.\n- **item--selected** - Applied when the tree item is selected.\n- **indentation** - The tree item's indentation container.\n- **expand-button** - The container that wraps the tree item's expand button and spinner.\n- **label** - The tree item's label.\n- **children** - The container that wraps the tree item's nested children.\n- **checkbox** - The checkbox that shows when using multiselect.\n- **checkbox__base** - The checkbox's exported `base` part.\n- **checkbox__control** - The checkbox's exported `control` part.\n- **checkbox__control--checked** - The checkbox's exported `control--checked` part.\n- **checkbox__control--indeterminate** - The checkbox's exported `control--indeterminate` part.\n- **checkbox__checked-icon** - The checkbox's exported `checked-icon` part.\n- **checkbox__indeterminate-icon** - The checkbox's exported `indeterminate-icon` part.\n- **checkbox__label** - The checkbox's exported `label` part.",
       "attributes": [
         {
           "name": "expanded",

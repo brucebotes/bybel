@@ -1,14 +1,13 @@
-import {
-  badge_default
-} from "../../chunks/chunk.XA5GVTMO.js";
-import "../../chunks/chunk.VQ253K64.js";
-import "../../chunks/chunk.ORW72H2K.js";
-import "../../chunks/chunk.UP75L23G.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.W3ITKVRU.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/badge/badge.js";
+var badge_default = createComponent({
+  tagName: "sl-badge",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   badge_default as default
 };

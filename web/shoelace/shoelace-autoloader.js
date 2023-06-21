@@ -1,10 +1,6 @@
-import {
-  getBasePath
-} from "./chunks/chunk.3Y6SB6QS.js";
-import "./chunks/chunk.LKA3TPUC.js";
-
-// src/shoelace-autoloader.ts
-var observer = new MutationObserver((mutations) => {
+import "./chunks/chunk.6M63UXML.js";
+import { getBasePath } from "./utilities/base-path";
+const observer = new MutationObserver((mutations) => {
   for (const { addedNodes } of mutations) {
     for (const node of addedNodes) {
       if (node.nodeType === Node.ELEMENT_NODE) {
@@ -34,7 +30,7 @@ function register(tagName) {
   });
 }
 discover(document.body);
-observer.observe(document.body, { subtree: true, childList: true });
+observer.observe(document.documentElement, { subtree: true, childList: true });
 export {
   discover
 };

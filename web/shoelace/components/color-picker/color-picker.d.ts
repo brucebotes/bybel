@@ -44,8 +44,7 @@ export default class SlColorPicker extends ShoelaceElement implements ShoelaceFo
     required: boolean;
     get validity(): ValidityState;
     get validationMessage(): string;
-    connectedCallback(): void;
-    disconnectedCallback(): void;
+    constructor();
     firstUpdated(): void;
     private handleCopy;
     private handleFocusIn;

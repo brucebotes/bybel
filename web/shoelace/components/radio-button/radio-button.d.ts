@@ -18,7 +18,7 @@ export default class SlRadioButton extends ShoelaceElement {
     handleDisabledChange(): void;
     focus(options?: FocusOptions): void;
     blur(): void;
-    render(): import("lit-html").TemplateResult<1 | 2>;
+    render(): import("lit-html").TemplateResult;
 }
 declare global {
     interface HTMLElementTagNameMap {

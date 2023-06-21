@@ -17,7 +17,7 @@ export default class SlAnimation extends ShoelaceElement {
     iterationStart: number;
     keyframes?: Keyframe[];
     playbackRate: number;
-    get currentTime(): number;
+    get currentTime(): CSSNumberish;
     set currentTime(time: number);
     connectedCallback(): void;
     disconnectedCallback(): void;

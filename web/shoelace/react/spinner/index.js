@@ -1,14 +1,13 @@
-import {
-  spinner_default
-} from "../../chunks/chunk.MBFJEQ4Y.js";
-import "../../chunks/chunk.6FLA54KR.js";
-import "../../chunks/chunk.TA75SLJE.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/spinner/spinner.js";
+var spinner_default = createComponent({
+  tagName: "sl-spinner",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   spinner_default as default
 };

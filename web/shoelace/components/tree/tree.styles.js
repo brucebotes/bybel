@@ -1,9 +1,30 @@
-import {
-  tree_styles_default
-} from "../../chunks/chunk.PXIR4IUJ.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles";
+var tree_styles_default = css`
+  ${componentStyles}
+
+  :host {
+    /*
+     * These are actually used by tree item, but we define them here so they can more easily be set and all tree items
+     * stay consistent.
+     */
+    --indent-guide-color: var(--sl-color-neutral-200);
+    --indent-guide-offset: 0;
+    --indent-guide-style: solid;
+    --indent-guide-width: 0;
+    --indent-size: var(--sl-spacing-large);
+
+    display: block;
+    isolation: isolate;
+
+    /*
+     * Tree item indentation uses the "em" unit to increment its width on each level, so setting the font size to zero
+     * here removes the indentation for all the nodes on the first level.
+     */
+    font-size: 0;
+  }
+`;
 export {
   tree_styles_default as default
 };

@@ -1,9 +1,5 @@
-import {
-  formCollections
-} from "../chunks/chunk.HDTNU4PB.js";
-import "../chunks/chunk.LKA3TPUC.js";
-
-// src/utilities/form.ts
+import "../chunks/chunk.6M63UXML.js";
+import { formCollections } from "../internal/form";
 function serialize(form) {
   const formData = new FormData(form);
   const object = {};

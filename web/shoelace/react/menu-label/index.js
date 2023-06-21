@@ -1,12 +1,13 @@
-import {
-  menu_label_default
-} from "../../chunks/chunk.E3LORCLK.js";
-import "../../chunks/chunk.MVBG6NLY.js";
-import "../../chunks/chunk.DYDPLPGK.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/menu-label/menu-label.js";
+var menu_label_default = createComponent({
+  tagName: "sl-menu-label",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   menu_label_default as default
 };

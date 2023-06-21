@@ -1,13 +1,15 @@
-import {
-  resize_observer_default
-} from "../../chunks/chunk.C4HMKDLV.js";
-import "../../chunks/chunk.X4SGTXZN.js";
-import "../../chunks/chunk.FHB26C7K.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/resize-observer/resize-observer.js";
+var resize_observer_default = createComponent({
+  tagName: "sl-resize-observer",
+  elementClass: Component,
+  react: React,
+  events: {
+    onSlResize: "sl-resize"
+  }
+});
 export {
   resize_observer_default as default
 };

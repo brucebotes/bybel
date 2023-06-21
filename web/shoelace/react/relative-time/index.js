@@ -1,12 +1,13 @@
-import {
-  relative_time_default
-} from "../../chunks/chunk.6LNNSI5N.js";
-import "../../chunks/chunk.WVPHE5WS.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/relative-time/relative-time.js";
+var relative_time_default = createComponent({
+  tagName: "sl-relative-time",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   relative_time_default as default
 };

@@ -1,9 +1,5 @@
-import "../chunks/chunk.QL5C2XOW.js";
-import {
-  getAnimationNames,
-  getEasingNames
-} from "../chunks/chunk.E4AJYFRU.js";
-import "../chunks/chunk.LKA3TPUC.js";
+import "../chunks/chunk.6M63UXML.js";
+import { getAnimationNames, getEasingNames } from "../components/animation/animations";
 export {
   getAnimationNames,
   getEasingNames

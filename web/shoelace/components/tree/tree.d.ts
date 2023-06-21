@@ -11,6 +11,7 @@ export default class SlTree extends ShoelaceElement {
     private readonly localize;
     private mutationObserver;
     private clickTarget;
+    constructor();
     connectedCallback(): Promise<void>;
     disconnectedCallback(): void;
     private getExpandButtonIcon;

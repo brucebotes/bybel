@@ -1,11 +1,6 @@
-import "../chunks/chunk.MQ6XKY3Z.js";
-import {
-  registerTranslation
-} from "../chunks/chunk.L2X53Y67.js";
-import "../chunks/chunk.LKA3TPUC.js";
-
-// src/translations/zh-tw.ts
-var translation = {
+import "../chunks/chunk.6M63UXML.js";
+import { registerTranslation } from "../utilities/localize";
+const translation = {
   $code: "zh-tw",
   $name: "\u6B63\u9AD4\u4E2D\u6587",
   $dir: "ltr",

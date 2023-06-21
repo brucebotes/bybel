@@ -1,12 +1,13 @@
-import {
-  format_date_default
-} from "../../chunks/chunk.NK23PYJD.js";
-import "../../chunks/chunk.P2IPLWW7.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/format-date/format-date.js";
+var format_date_default = createComponent({
+  tagName: "sl-format-date",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   format_date_default as default
 };

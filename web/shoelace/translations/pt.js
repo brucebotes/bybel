@@ -1,11 +1,6 @@
-import "../chunks/chunk.MQ6XKY3Z.js";
-import {
-  registerTranslation
-} from "../chunks/chunk.L2X53Y67.js";
-import "../chunks/chunk.LKA3TPUC.js";
-
-// src/translations/pt.ts
-var translation = {
+import "../chunks/chunk.6M63UXML.js";
+import { registerTranslation } from "../utilities/localize";
+const translation = {
   $code: "pt",
   $name: "Portugu\xEAs",
   $dir: "ltr",
@@ -30,10 +25,10 @@ var translation = {
   remove: "Remover",
   resize: "Mudar o tamanho",
   scrollToEnd: "Rolar at\xE9 o final",
-  scrollToStart: "Rolar at\xE9 o come\xE7o",
+  scrollToStart: "Rolar at\xE9 o in\xEDcio",
   selectAColorFromTheScreen: "Selecionar uma cor da tela",
-  showPassword: "Mostrar senhaShow password",
-  slideNum: (slide) => `Diapositivo ${slide}`,
+  showPassword: "Mostrar senha",
+  slideNum: (slide) => `Slide ${slide}`,
   toggleColorFormat: "Trocar o formato de cor"
 };
 registerTranslation(translation);

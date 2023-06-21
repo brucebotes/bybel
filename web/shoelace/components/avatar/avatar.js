@@ -1,20 +1,89 @@
 import {
-  SlAvatar
-} from "../../chunks/chunk.6FDM2FUG.js";
-import "../../chunks/chunk.LBFGJPTQ.js";
-import "../../chunks/chunk.B4225MTJ.js";
-import "../../chunks/chunk.VG6XY36X.js";
-import "../../chunks/chunk.P7ZG6EMR.js";
-import "../../chunks/chunk.I33L3NO6.js";
-import "../../chunks/chunk.DAGT3MMF.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.3Y6SB6QS.js";
-import "../../chunks/chunk.ORW72H2K.js";
-import "../../chunks/chunk.UP75L23G.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import "../icon/icon";
+import { classMap } from "lit/directives/class-map.js";
+import { customElement, property, state } from "lit/decorators.js";
+import { html } from "lit";
+import { watch } from "../../internal/watch";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./avatar.styles";
+let SlAvatar = class extends ShoelaceElement {
+  constructor() {
+    super(...arguments);
+    this.hasError = false;
+    this.image = "";
+    this.label = "";
+    this.initials = "";
+    this.loading = "eager";
+    this.shape = "circle";
+  }
+  handleImageChange() {
+    this.hasError = false;
+  }
+  render() {
+    const avatarWithImage = html`
+      <img
+        part="image"
+        class="avatar__image"
+        src="${this.image}"
+        loading="${this.loading}"
+        alt=""
+        @error="${() => this.hasError = true}"
+      />
+    `;
+    let avatarWithoutImage = html``;
+    if (this.initials) {
+      avatarWithoutImage = html`<div part="initials" class="avatar__initials">${this.initials}</div>`;
+    } else {
+      avatarWithoutImage = html`
+        <slot name="icon" part="icon" class="avatar__icon" aria-hidden="true">
+          <sl-icon name="person-fill" library="system"></sl-icon>
+        </slot>
+      `;
+    }
+    return html`
+      <div
+        part="base"
+        class=${classMap({
+      avatar: true,
+      "avatar--circle": this.shape === "circle",
+      "avatar--rounded": this.shape === "rounded",
+      "avatar--square": this.shape === "square"
+    })}
+        role="img"
+        aria-label=${this.label}
+      >
+        ${this.image && !this.hasError ? avatarWithImage : avatarWithoutImage}
+      </div>
+    `;
+  }
+};
+SlAvatar.styles = styles;
+__decorateClass([
+  state()
+], SlAvatar.prototype, "hasError", 2);
+__decorateClass([
+  property()
+], SlAvatar.prototype, "image", 2);
+__decorateClass([
+  property()
+], SlAvatar.prototype, "label", 2);
+__decorateClass([
+  property()
+], SlAvatar.prototype, "initials", 2);
+__decorateClass([
+  property()
+], SlAvatar.prototype, "loading", 2);
+__decorateClass([
+  property({ reflect: true })
+], SlAvatar.prototype, "shape", 2);
+__decorateClass([
+  watch("image")
+], SlAvatar.prototype, "handleImageChange", 1);
+SlAvatar = __decorateClass([
+  customElement("sl-avatar")
+], SlAvatar);
 export {
   SlAvatar as default
 };

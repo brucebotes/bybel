@@ -15,7 +15,6 @@ export default class SlDrawer extends ShoelaceElement {
     placement: 'top' | 'end' | 'bottom' | 'start';
     contained: boolean;
     noHeader: boolean;
-    connectedCallback(): void;
     firstUpdated(): void;
     disconnectedCallback(): void;
     private requestClose;

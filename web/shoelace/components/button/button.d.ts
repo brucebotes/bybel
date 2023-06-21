@@ -35,8 +35,7 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
     formTarget: '_self' | '_blank' | '_parent' | '_top' | string;
     get validity(): ValidityState;
     get validationMessage(): string;
-    connectedCallback(): void;
-    disconnectedCallback(): void;
+    constructor();
     firstUpdated(): void;
     private handleBlur;
     private handleFocus;
@@ -53,7 +52,7 @@ export default class SlButton extends ShoelaceElement implements ShoelaceFormCon
     getForm(): HTMLFormElement | null;
     reportValidity(): boolean;
     setCustomValidity(message: string): void;
-    render(): import("lit-html").TemplateResult<1 | 2>;
+    render(): import("lit-html").TemplateResult;
 }
 declare global {
     interface HTMLElementTagNameMap {

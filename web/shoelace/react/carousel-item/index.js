@@ -1,12 +1,13 @@
-import {
-  carousel_item_default
-} from "../../chunks/chunk.O6Z54JL5.js";
-import "../../chunks/chunk.TDICIOWC.js";
-import "../../chunks/chunk.NNN7KQVN.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/carousel-item/carousel-item.js";
+var carousel_item_default = createComponent({
+  tagName: "sl-carousel-item",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   carousel_item_default as default
 };

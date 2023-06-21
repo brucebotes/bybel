@@ -1,14 +1,13 @@
-import {
-  progress_ring_default
-} from "../../chunks/chunk.PANFUFWD.js";
-import "../../chunks/chunk.UVNCMXMM.js";
-import "../../chunks/chunk.DMXST7MK.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/progress-ring/progress-ring.js";
+var progress_ring_default = createComponent({
+  tagName: "sl-progress-ring",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   progress_ring_default as default
 };

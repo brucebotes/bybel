@@ -1,22 +1,18 @@
-import {
-  tooltip_default
-} from "../../chunks/chunk.A7NPWYX6.js";
-import "../../chunks/chunk.LJX6BXHL.js";
-import "../../chunks/chunk.KKKZTCZ5.js";
-import "../../chunks/chunk.QWGZ4US6.js";
-import "../../chunks/chunk.Z7MHAEL3.js";
-import "../../chunks/chunk.OAQT3AUQ.js";
-import "../../chunks/chunk.B4BZKR24.js";
-import "../../chunks/chunk.65AZ2BGN.js";
-import "../../chunks/chunk.MQ6XKY3Z.js";
-import "../../chunks/chunk.L2X53Y67.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.ORW72H2K.js";
-import "../../chunks/chunk.UP75L23G.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/tooltip/tooltip.js";
+var tooltip_default = createComponent({
+  tagName: "sl-tooltip",
+  elementClass: Component,
+  react: React,
+  events: {
+    onSlShow: "sl-show",
+    onSlAfterShow: "sl-after-show",
+    onSlHide: "sl-hide",
+    onSlAfterHide: "sl-after-hide"
+  }
+});
 export {
   tooltip_default as default
 };

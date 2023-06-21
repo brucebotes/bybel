@@ -1,7 +1,7 @@
 {
   "$schema": "http://json.schemastore.org/web-types",
   "name": "@shoelace-style/shoelace",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "description-markup": "markdown",
   "framework-config": {
     "enable-when": {
@@ -150,60 +150,140 @@
           ]
         },
         {
-          "name": "sl-animated-image",
+          "name": "sl-animation",
           "description": "",
-          "doc-url": "https://shoelace.style/components/animated-image",
+          "doc-url": "https://shoelace.style/components/animation",
           "js": {
             "properties": [
               {
-                "name": "animatedImage",
+                "name": "animation",
                 "value": {
-                  "type": "HTMLImageElement"
+                  "type": "Animation | undefined"
                 }
               },
               {
-                "name": "frozenFrame",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "isLoaded",
+                "name": "hasStarted",
                 "value": {
                   "type": "boolean"
                 }
               },
               {
-                "name": "src",
-                "description": "The path to the image to load.",
+                "name": "defaultSlot",
                 "value": {
-                  "type": "string"
+                  "type": "Promise<HTMLSlotElement>"
                 }
               },
               {
-                "name": "alt",
-                "description": "A description of the image used by assistive devices.",
+                "name": "name",
+                "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
                 "value": {
                   "type": "string"
                 }
               },
               {
                 "name": "play",
-                "description": "Plays the animation. When this attribute is remove, the animation will pause.",
+                "description": "Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when\nthe animation finishes or gets canceled.",
                 "value": {
                   "type": "boolean"
                 }
               },
               {
-                "name": "handleClick",
+                "name": "delay",
+                "description": "The number of milliseconds to delay the start of the animation.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "direction",
+                "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.\n[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)",
+                "value": {
+                  "type": "PlaybackDirection"
+                }
+              },
+              {
+                "name": "duration",
+                "description": "The number of milliseconds each iteration of the animation takes to complete.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "easing",
+                "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "endDelay",
+                "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "fill",
+                "description": "Sets how the animation applies styles to its target before and after its execution.",
+                "value": {
+                  "type": "FillMode"
+                }
+              },
+              {
+                "name": "iterations",
+                "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
                 "value": {}
               },
               {
-                "name": "handleLoad",
+                "name": "iterationStart",
+                "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "keyframes",
+                "description": "The keyframes to use for the animation. If this is set, `name` will be ignored.",
+                "value": {
+                  "type": "Keyframe[] | undefined"
+                }
+              },
+              {
+                "name": "playbackRate",
+                "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+                "value": {
+                  "type": "number"
+                }
+              },
+              {
+                "name": "currentTime",
+                "description": "Gets and sets the current animation time.",
+                "value": {
+                  "type": "CSSNumberish"
+                }
+              },
+              {
+                "name": "handleAnimationFinish",
                 "value": {}
               },
               {
-                "name": "handleError",
+                "name": "handleAnimationCancel",
+                "value": {}
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              },
+              {
+                "name": "createAnimation",
+                "value": {}
+              },
+              {
+                "name": "destroyAnimation",
+                "value": {}
+              },
+              {
+                "name": "handleAnimationChange",
                 "value": {}
               },
               {
@@ -211,41 +291,219 @@
                 "value": {}
               },
               {
-                "name": "handleSrcChange",
+                "name": "handlePlaybackRateChange",
+                "value": {}
+              },
+              {
+                "name": "cancel",
+                "description": "Clears all keyframe effects caused by this animation and aborts its playback.",
+                "value": {}
+              },
+              {
+                "name": "finish",
+                "description": "Sets the playback time to the end of the animation corresponding to the current playback direction.",
                 "value": {}
               }
             ],
             "events": [
               {
-                "name": "sl-load",
-                "description": "Emitted when the image loads successfully."
+                "name": "sl-cancel",
+                "description": "Emitted when the animation is canceled."
               },
               {
-                "name": "sl-error",
-                "description": "Emitted when the image fails to load."
+                "name": "sl-finish",
+                "description": "Emitted when the animation finishes."
+              },
+              {
+                "name": "sl-start",
+                "description": "Emitted when the animation starts or restarts."
               }
             ]
           },
           "attributes": [
             {
-              "name": "src",
-              "description": "The path to the image to load.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "alt",
-              "description": "A description of the image used by assistive devices.",
+              "name": "name",
+              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
               "value": {
                 "type": "string"
               }
             },
             {
               "name": "play",
-              "description": "Plays the animation. When this attribute is remove, the animation will pause.",
+              "description": "Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when\nthe animation finishes or gets canceled.",
               "value": {
                 "type": "boolean"
+              }
+            },
+            {
+              "name": "delay",
+              "description": "The number of milliseconds to delay the start of the animation.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "direction",
+              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.\n[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)",
+              "value": {
+                "type": "PlaybackDirection"
+              }
+            },
+            {
+              "name": "duration",
+              "description": "The number of milliseconds each iteration of the animation takes to complete.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "easing",
+              "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "end-delay",
+              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "fill",
+              "description": "Sets how the animation applies styles to its target before and after its execution.",
+              "value": {
+                "type": "FillMode"
+              }
+            },
+            {
+              "name": "iterations",
+              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
+              "value": {}
+            },
+            {
+              "name": "iteration-start",
+              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
+              "value": {
+                "type": "number"
+              }
+            },
+            {
+              "name": "playback-rate",
+              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
+              "value": {
+                "type": "number"
+              }
+            }
+          ]
+        },
+        {
+          "description": "Gets a list of all supported animation names.",
+          "doc-url": "https://shoelace.style/components/",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "description": "Gets a list of all supported easing function names.",
+          "doc-url": "https://shoelace.style/components/",
+          "js": {
+            "properties": [],
+            "events": []
+          },
+          "attributes": []
+        },
+        {
+          "name": "sl-avatar",
+          "description": "",
+          "doc-url": "https://shoelace.style/components/avatar",
+          "js": {
+            "properties": [
+              {
+                "name": "hasError",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "image",
+                "description": "The image source to use for the avatar.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "label",
+                "description": "A label to use to describe the avatar to assistive devices.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "initials",
+                "description": "Initials to use as a fallback when no image is available (1-2 characters max recommended).",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "loading",
+                "description": "Indicates how the browser should load the image.",
+                "value": {
+                  "type": "'eager' | 'lazy'"
+                }
+              },
+              {
+                "name": "shape",
+                "description": "The shape of the avatar.",
+                "value": {
+                  "type": "'circle' | 'square' | 'rounded'"
+                }
+              },
+              {
+                "name": "handleImageChange",
+                "value": {}
+              }
+            ],
+            "events": []
+          },
+          "attributes": [
+            {
+              "name": "image",
+              "description": "The image source to use for the avatar.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "label",
+              "description": "A label to use to describe the avatar to assistive devices.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "initials",
+              "description": "Initials to use as a fallback when no image is available (1-2 characters max recommended).",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "loading",
+              "description": "Indicates how the browser should load the image.",
+              "value": {
+                "type": "'eager' | 'lazy'"
+              }
+            },
+            {
+              "name": "shape",
+              "description": "The shape of the avatar.",
+              "value": {
+                "type": "'circle' | 'square' | 'rounded'"
               }
             }
           ]
@@ -359,59 +617,102 @@
           ]
         },
         {
-          "name": "sl-breadcrumb-item",
+          "name": "sl-animated-image",
           "description": "",
-          "doc-url": "https://shoelace.style/components/breadcrumb-item",
+          "doc-url": "https://shoelace.style/components/animated-image",
           "js": {
             "properties": [
               {
-                "name": "hasSlotController",
-                "value": {}
-              },
-              {
-                "name": "href",
-                "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
+                "name": "animatedImage",
                 "value": {
-                  "type": "string | undefined"
+                  "type": "HTMLImageElement"
                 }
               },
               {
-                "name": "target",
-                "description": "Tells the browser where to open the link. Only used when `href` is set.",
-                "value": {
-                  "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-                }
-              },
-              {
-                "name": "rel",
-                "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
+                "name": "frozenFrame",
                 "value": {
                   "type": "string"
                 }
+              },
+              {
+                "name": "isLoaded",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "src",
+                "description": "The path to the image to load.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "alt",
+                "description": "A description of the image used by assistive devices.",
+                "value": {
+                  "type": "string"
+                }
+              },
+              {
+                "name": "play",
+                "description": "Plays the animation. When this attribute is remove, the animation will pause.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleClick",
+                "value": {}
+              },
+              {
+                "name": "handleLoad",
+                "value": {}
+              },
+              {
+                "name": "handleError",
+                "value": {}
+              },
+              {
+                "name": "handlePlayChange",
+                "value": {}
+              },
+              {
+                "name": "handleSrcChange",
+                "value": {}
               }
             ],
-            "events": []
+            "events": [
+              {
+                "name": "sl-load",
+                "description": "Emitted when the image loads successfully."
+              },
+              {
+                "name": "sl-error",
+                "description": "Emitted when the image fails to load."
+              }
+            ]
           },
           "attributes": [
             {
-              "name": "href",
-              "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
-              "value": {
-                "type": "string | undefined"
-              }
-            },
-            {
-              "name": "target",
-              "description": "Tells the browser where to open the link. Only used when `href` is set.",
-              "value": {
-                "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
-              }
-            },
-            {
-              "name": "rel",
-              "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
+              "name": "src",
+              "description": "The path to the image to load.",
               "value": {
                 "type": "string"
+              }
+            },
+            {
+              "name": "alt",
+              "description": "A description of the image used by assistive devices.",
+              "value": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "play",
+              "description": "Plays the animation. When this attribute is remove, the animation will pause.",
+              "value": {
+                "type": "boolean"
               }
             }
           ]
@@ -855,363 +1156,62 @@
           ]
         },
         {
-          "name": "sl-avatar",
+          "name": "sl-breadcrumb-item",
           "description": "",
-          "doc-url": "https://shoelace.style/components/avatar",
+          "doc-url": "https://shoelace.style/components/breadcrumb-item",
           "js": {
             "properties": [
               {
-                "name": "hasError",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "image",
-                "description": "The image source to use for the avatar.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "label",
-                "description": "A label to use to describe the avatar to assistive devices.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "initials",
-                "description": "Initials to use as a fallback when no image is available (1-2 characters max recommended).",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "loading",
-                "description": "Indicates how the browser should load the image.",
-                "value": {
-                  "type": "'eager' | 'lazy'"
-                }
-              },
-              {
-                "name": "shape",
-                "description": "The shape of the avatar.",
-                "value": {
-                  "type": "'circle' | 'square' | 'rounded'"
-                }
-              },
-              {
-                "name": "handleImageChange",
+                "name": "hasSlotController",
                 "value": {}
+              },
+              {
+                "name": "href",
+                "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
+                "value": {
+                  "type": "string | undefined"
+                }
+              },
+              {
+                "name": "target",
+                "description": "Tells the browser where to open the link. Only used when `href` is set.",
+                "value": {
+                  "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+                }
+              },
+              {
+                "name": "rel",
+                "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
+                "value": {
+                  "type": "string"
+                }
               }
             ],
             "events": []
           },
           "attributes": [
             {
-              "name": "image",
-              "description": "The image source to use for the avatar.",
+              "name": "href",
+              "description": "Optional URL to direct the user to when the breadcrumb item is activated. When set, a link will be rendered\ninternally. When unset, a button will be rendered instead.",
+              "value": {
+                "type": "string | undefined"
+              }
+            },
+            {
+              "name": "target",
+              "description": "Tells the browser where to open the link. Only used when `href` is set.",
+              "value": {
+                "type": "'_blank' | '_parent' | '_self' | '_top' | undefined"
+              }
+            },
+            {
+              "name": "rel",
+              "description": "The `rel` attribute to use on the link. Only used when `href` is set.",
               "value": {
                 "type": "string"
-              }
-            },
-            {
-              "name": "label",
-              "description": "A label to use to describe the avatar to assistive devices.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "initials",
-              "description": "Initials to use as a fallback when no image is available (1-2 characters max recommended).",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "loading",
-              "description": "Indicates how the browser should load the image.",
-              "value": {
-                "type": "'eager' | 'lazy'"
-              }
-            },
-            {
-              "name": "shape",
-              "description": "The shape of the avatar.",
-              "value": {
-                "type": "'circle' | 'square' | 'rounded'"
               }
             }
           ]
-        },
-        {
-          "name": "sl-animation",
-          "description": "",
-          "doc-url": "https://shoelace.style/components/animation",
-          "js": {
-            "properties": [
-              {
-                "name": "animation",
-                "value": {
-                  "type": "Animation | undefined"
-                }
-              },
-              {
-                "name": "hasStarted",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "defaultSlot",
-                "value": {
-                  "type": "Promise<HTMLSlotElement>"
-                }
-              },
-              {
-                "name": "name",
-                "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "play",
-                "description": "Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when\nthe animation finishes or gets canceled.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "delay",
-                "description": "The number of milliseconds to delay the start of the animation.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "direction",
-                "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.\n[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)",
-                "value": {
-                  "type": "PlaybackDirection"
-                }
-              },
-              {
-                "name": "duration",
-                "description": "The number of milliseconds each iteration of the animation takes to complete.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "easing",
-                "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-                "value": {
-                  "type": "string"
-                }
-              },
-              {
-                "name": "endDelay",
-                "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "fill",
-                "description": "Sets how the animation applies styles to its target before and after its execution.",
-                "value": {
-                  "type": "FillMode"
-                }
-              },
-              {
-                "name": "iterations",
-                "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-                "value": {}
-              },
-              {
-                "name": "iterationStart",
-                "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "keyframes",
-                "description": "The keyframes to use for the animation. If this is set, `name` will be ignored.",
-                "value": {
-                  "type": "Keyframe[] | undefined"
-                }
-              },
-              {
-                "name": "playbackRate",
-                "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "currentTime",
-                "description": "Gets and sets the current animation time.",
-                "value": {
-                  "type": "number"
-                }
-              },
-              {
-                "name": "handleAnimationFinish",
-                "value": {}
-              },
-              {
-                "name": "handleAnimationCancel",
-                "value": {}
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              },
-              {
-                "name": "createAnimation",
-                "value": {}
-              },
-              {
-                "name": "destroyAnimation",
-                "value": {}
-              },
-              {
-                "name": "handleAnimationChange",
-                "value": {}
-              },
-              {
-                "name": "handlePlayChange",
-                "value": {}
-              },
-              {
-                "name": "handlePlaybackRateChange",
-                "value": {}
-              },
-              {
-                "name": "cancel",
-                "description": "Clears all keyframe effects caused by this animation and aborts its playback.",
-                "value": {}
-              },
-              {
-                "name": "finish",
-                "description": "Sets the playback time to the end of the animation corresponding to the current playback direction.",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "sl-cancel",
-                "description": "Emitted when the animation is canceled."
-              },
-              {
-                "name": "sl-finish",
-                "description": "Emitted when the animation finishes."
-              },
-              {
-                "name": "sl-start",
-                "description": "Emitted when the animation starts or restarts."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "name",
-              "description": "The name of the built-in animation to use. For custom animations, use the `keyframes` prop.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "play",
-              "description": "Plays the animation. When omitted, the animation will be paused. This attribute will be automatically removed when\nthe animation finishes or gets canceled.",
-              "value": {
-                "type": "boolean"
-              }
-            },
-            {
-              "name": "delay",
-              "description": "The number of milliseconds to delay the start of the animation.",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "direction",
-              "description": "Determines the direction of playback as well as the behavior when reaching the end of an iteration.\n[Learn more](https://developer.mozilla.org/en-US/docs/Web/CSS/animation-direction)",
-              "value": {
-                "type": "PlaybackDirection"
-              }
-            },
-            {
-              "name": "duration",
-              "description": "The number of milliseconds each iteration of the animation takes to complete.",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "easing",
-              "description": "The easing function to use for the animation. This can be a Shoelace easing function or a custom easing function\nsuch as `cubic-bezier(0, 1, .76, 1.14)`.",
-              "value": {
-                "type": "string"
-              }
-            },
-            {
-              "name": "end-delay",
-              "description": "The number of milliseconds to delay after the active period of an animation sequence.",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "fill",
-              "description": "Sets how the animation applies styles to its target before and after its execution.",
-              "value": {
-                "type": "FillMode"
-              }
-            },
-            {
-              "name": "iterations",
-              "description": "The number of iterations to run before the animation completes. Defaults to `Infinity`, which loops.",
-              "value": {}
-            },
-            {
-              "name": "iteration-start",
-              "description": "The offset at which to start the animation, usually between 0 (start) and 1 (end).",
-              "value": {
-                "type": "number"
-              }
-            },
-            {
-              "name": "playback-rate",
-              "description": "Sets the animation's playback rate. The default is `1`, which plays the animation at a normal speed. Setting this\nto `2`, for example, will double the animation's speed. A negative value can be used to reverse the animation. This\nvalue can be changed without causing the animation to restart.",
-              "value": {
-                "type": "number"
-              }
-            }
-          ]
-        },
-        {
-          "description": "Gets a list of all supported animation names.",
-          "doc-url": "https://shoelace.style/components/",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
-        },
-        {
-          "description": "Gets a list of all supported easing function names.",
-          "doc-url": "https://shoelace.style/components/",
-          "js": {
-            "properties": [],
-            "events": []
-          },
-          "attributes": []
         },
         {
           "name": "sl-button-group",
@@ -2587,9 +2587,7 @@
               },
               {
                 "name": "modal",
-                "value": {
-                  "type": "Modal"
-                }
+                "value": {}
               },
               {
                 "name": "originalTrigger",
@@ -2764,9 +2762,7 @@
               },
               {
                 "name": "modal",
-                "value": {
-                  "type": "Modal"
-                }
+                "value": {}
               },
               {
                 "name": "originalTrigger",
@@ -3559,6 +3555,12 @@
           "js": {
             "properties": [
               {
+                "name": "initialRender",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
                 "name": "resolveIcon",
                 "description": "Given a URL, this function returns the resulting SVG element or an appropriate error symbol.",
                 "value": {}
@@ -3566,7 +3568,7 @@
               {
                 "name": "svg",
                 "value": {
-                  "type": "SVGElement | null"
+                  "type": "SVGElement | HTMLTemplateResult | null"
                 }
               },
               {
@@ -3613,11 +3615,11 @@
             "events": [
               {
                 "name": "sl-load",
-                "description": "Emitted when the icon has loaded."
+                "description": "Emitted when the icon has loaded. When using `spriteSheet: true` this will not emit."
               },
               {
                 "name": "sl-error",
-                "description": "Emitted when the icon fails to load due to an error."
+                "description": "Emitted when the icon fails to load due to an error. When using `spriteSheet: true` this will not emit."
               }
             ]
           },
@@ -4059,6 +4061,14 @@
                 "value": {
                   "type": "string"
                 }
+              },
+              {
+                "name": "__numberInput",
+                "value": {}
+              },
+              {
+                "name": "__dateInput",
+                "value": {}
               },
               {
                 "name": "type",
@@ -5668,14 +5678,6 @@
                 }
               },
               {
-                "name": "addEventListeners",
-                "value": {}
-              },
-              {
-                "name": "removeEventListeners",
-                "value": {}
-              },
-              {
                 "name": "handleBlur",
                 "value": {}
               },
@@ -5992,15 +5994,23 @@
                 "value": {}
               },
               {
-                "name": "handleSlotChange",
-                "value": {}
-              },
-              {
                 "name": "handleInvalid",
                 "value": {}
               },
               {
+                "name": "syncRadioElements",
+                "value": {}
+              },
+              {
+                "name": "syncRadios",
+                "value": {}
+              },
+              {
                 "name": "updateCheckedRadio",
+                "value": {}
+              },
+              {
+                "name": "handleSizeChange",
                 "value": {}
               },
               {
@@ -6646,6 +6656,65 @@
           ]
         },
         {
+          "name": "sl-resize-observer",
+          "description": "",
+          "doc-url": "https://shoelace.style/components/resize-observer",
+          "js": {
+            "properties": [
+              {
+                "name": "resizeObserver",
+                "value": {
+                  "type": "ResizeObserver"
+                }
+              },
+              {
+                "name": "observedElements",
+                "value": {
+                  "type": "HTMLElement[]"
+                }
+              },
+              {
+                "name": "disabled",
+                "description": "Disables the observer.",
+                "value": {
+                  "type": "boolean"
+                }
+              },
+              {
+                "name": "handleSlotChange",
+                "value": {}
+              },
+              {
+                "name": "startObserver",
+                "value": {}
+              },
+              {
+                "name": "stopObserver",
+                "value": {}
+              },
+              {
+                "name": "handleDisabledChange",
+                "value": {}
+              }
+            ],
+            "events": [
+              {
+                "name": "sl-resize",
+                "description": "Emitted when the element is resized."
+              }
+            ]
+          },
+          "attributes": [
+            {
+              "name": "disabled",
+              "description": "Disables the observer.",
+              "value": {
+                "type": "boolean"
+              }
+            }
+          ]
+        },
+        {
           "name": "sl-relative-time",
           "description": "",
           "doc-url": "https://shoelace.style/components/relative-time",
@@ -6735,65 +6804,6 @@
             {
               "name": "sync",
               "description": "Keep the displayed value up to date as time passes.",
-              "value": {
-                "type": "boolean"
-              }
-            }
-          ]
-        },
-        {
-          "name": "sl-resize-observer",
-          "description": "",
-          "doc-url": "https://shoelace.style/components/resize-observer",
-          "js": {
-            "properties": [
-              {
-                "name": "resizeObserver",
-                "value": {
-                  "type": "ResizeObserver"
-                }
-              },
-              {
-                "name": "observedElements",
-                "value": {
-                  "type": "HTMLElement[]"
-                }
-              },
-              {
-                "name": "disabled",
-                "description": "Disables the observer.",
-                "value": {
-                  "type": "boolean"
-                }
-              },
-              {
-                "name": "handleSlotChange",
-                "value": {}
-              },
-              {
-                "name": "startObserver",
-                "value": {}
-              },
-              {
-                "name": "stopObserver",
-                "value": {}
-              },
-              {
-                "name": "handleDisabledChange",
-                "value": {}
-              }
-            ],
-            "events": [
-              {
-                "name": "sl-resize",
-                "description": "Emitted when the element is resized."
-              }
-            ]
-          },
-          "attributes": [
-            {
-              "name": "disabled",
-              "description": "Disables the observer.",
               "value": {
                 "type": "boolean"
               }

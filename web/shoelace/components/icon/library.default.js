@@ -1,8 +1,10 @@
-import {
-  library_default_default
-} from "../../chunks/chunk.P7ZG6EMR.js";
-import "../../chunks/chunk.3Y6SB6QS.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import { getBasePath } from "../../utilities/base-path";
+const library = {
+  name: "default",
+  resolver: (name) => getBasePath(`assets/icons/${name}.svg`)
+};
+var library_default_default = library;
 export {
   library_default_default as default
 };

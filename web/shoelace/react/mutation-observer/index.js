@@ -1,13 +1,15 @@
-import {
-  mutation_observer_default
-} from "../../chunks/chunk.BXTN27EG.js";
-import "../../chunks/chunk.U756XYD3.js";
-import "../../chunks/chunk.ONM7523W.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/mutation-observer/mutation-observer.js";
+var mutation_observer_default = createComponent({
+  tagName: "sl-mutation-observer",
+  elementClass: Component,
+  react: React,
+  events: {
+    onSlMutation: "sl-mutation"
+  }
+});
 export {
   mutation_observer_default as default
 };

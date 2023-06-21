@@ -13,7 +13,6 @@ export default class SlDialog extends ShoelaceElement {
     open: boolean;
     label: string;
     noHeader: boolean;
-    connectedCallback(): void;
     firstUpdated(): void;
     disconnectedCallback(): void;
     private requestClose;

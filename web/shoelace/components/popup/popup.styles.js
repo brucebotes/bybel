@@ -1,9 +1,47 @@
-import {
-  popup_styles_default
-} from "../../chunks/chunk.Z7MHAEL3.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import { css } from "lit";
+import componentStyles from "../../styles/component.styles";
+var popup_styles_default = css`
+  ${componentStyles}
+
+  :host {
+    --arrow-color: var(--sl-color-neutral-1000);
+    --arrow-size: 6px;
+
+    /*
+     * These properties are computed to account for the arrow's dimensions after being rotated 45º. The constant
+     * 0.7071 is derived from sin(45), which is the diagonal size of the arrow's container after rotating.
+     */
+    --arrow-size-diagonal: calc(var(--arrow-size) * 0.7071);
+    --arrow-padding-offset: calc(var(--arrow-size-diagonal) - var(--arrow-size));
+
+    display: contents;
+  }
+
+  .popup {
+    position: absolute;
+    isolation: isolate;
+    max-width: var(--auto-size-available-width, none);
+    max-height: var(--auto-size-available-height, none);
+  }
+
+  .popup--fixed {
+    position: fixed;
+  }
+
+  .popup:not(.popup--active) {
+    display: none;
+  }
+
+  .popup__arrow {
+    position: absolute;
+    width: calc(var(--arrow-size-diagonal) * 2);
+    height: calc(var(--arrow-size-diagonal) * 2);
+    rotate: 45deg;
+    background: var(--arrow-color);
+    z-index: -1;
+  }
+`;
 export {
   popup_styles_default as default
 };

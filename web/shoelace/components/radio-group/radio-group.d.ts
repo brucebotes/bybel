@@ -29,9 +29,11 @@ export default class SlRadioGroup extends ShoelaceElement implements ShoelaceFor
     private handleRadioClick;
     private handleKeyDown;
     private handleLabelClick;
-    private handleSlotChange;
     private handleInvalid;
+    private syncRadioElements;
+    private syncRadios;
     private updateCheckedRadio;
+    handleSizeChange(): void;
     handleValueChange(): void;
     checkValidity(): boolean;
     getForm(): HTMLFormElement | null;

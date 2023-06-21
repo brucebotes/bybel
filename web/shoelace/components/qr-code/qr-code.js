@@ -1,14 +1,91 @@
 import {
-  SlQrCode
-} from "../../chunks/chunk.QE2CTSPX.js";
-import "../../chunks/chunk.Q3GGNRQA.js";
-import "../../chunks/chunk.B6IYY6FB.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.UP75L23G.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+  __decorateClass
+} from "../../chunks/chunk.6M63UXML.js";
+import { customElement, property, query } from "lit/decorators.js";
+import { html } from "lit";
+import { styleMap } from "lit/directives/style-map.js";
+import { watch } from "../../internal/watch";
+import QrCreator from "qr-creator";
+import ShoelaceElement from "../../internal/shoelace-element";
+import styles from "./qr-code.styles";
+let SlQrCode = class extends ShoelaceElement {
+  constructor() {
+    super(...arguments);
+    this.value = "";
+    this.label = "";
+    this.size = 128;
+    this.fill = "black";
+    this.background = "white";
+    this.radius = 0;
+    this.errorCorrection = "H";
+  }
+  firstUpdated() {
+    this.generate();
+  }
+  generate() {
+    if (!this.hasUpdated) {
+      return;
+    }
+    QrCreator.render(
+      {
+        text: this.value,
+        radius: this.radius,
+        ecLevel: this.errorCorrection,
+        fill: this.fill,
+        background: null,
+        // We draw the canvas larger and scale its container down to avoid blurring on high-density displays
+        size: this.size * 2
+      },
+      this.canvas
+    );
+  }
+  render() {
+    var _a;
+    return html`
+      <canvas
+        part="base"
+        class="qr-code"
+        role="img"
+        aria-label=${((_a = this.label) == null ? void 0 : _a.length) > 0 ? this.label : this.value}
+        style=${styleMap({
+      width: `${this.size}px`,
+      height: `${this.size}px`
+    })}
+      ></canvas>
+    `;
+  }
+};
+SlQrCode.styles = styles;
+__decorateClass([
+  query("canvas")
+], SlQrCode.prototype, "canvas", 2);
+__decorateClass([
+  property()
+], SlQrCode.prototype, "value", 2);
+__decorateClass([
+  property()
+], SlQrCode.prototype, "label", 2);
+__decorateClass([
+  property({ type: Number })
+], SlQrCode.prototype, "size", 2);
+__decorateClass([
+  property()
+], SlQrCode.prototype, "fill", 2);
+__decorateClass([
+  property()
+], SlQrCode.prototype, "background", 2);
+__decorateClass([
+  property({ type: Number })
+], SlQrCode.prototype, "radius", 2);
+__decorateClass([
+  property({ attribute: "error-correction" })
+], SlQrCode.prototype, "errorCorrection", 2);
+__decorateClass([
+  watch(["background", "errorCorrection", "fill", "radius", "size", "value"])
+], SlQrCode.prototype, "generate", 1);
+SlQrCode = __decorateClass([
+  customElement("sl-qr-code")
+], SlQrCode);
 export {
   SlQrCode as default
 };

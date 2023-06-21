@@ -19,7 +19,7 @@ export default class SlIconButton extends ShoelaceElement {
     click(): void;
     focus(options?: FocusOptions): void;
     blur(): void;
-    render(): import("lit-html").TemplateResult<1 | 2>;
+    render(): import("lit-html").TemplateResult;
 }
 declare global {
     interface HTMLElementTagNameMap {

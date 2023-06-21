@@ -17,9 +17,9 @@ export default class SlTooltip extends ShoelaceElement {
     skidding: number;
     trigger: string;
     hoist: boolean;
+    constructor();
     connectedCallback(): void;
     firstUpdated(): void;
-    disconnectedCallback(): void;
     private handleBlur;
     private handleClick;
     private handleFocus;

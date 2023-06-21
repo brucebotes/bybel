@@ -1,13 +1,13 @@
-import {
-  divider_default
-} from "../../chunks/chunk.R7HAVNIV.js";
-import "../../chunks/chunk.3FDOQGW5.js";
-import "../../chunks/chunk.Q7VOXEWK.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/divider/divider.js";
+var divider_default = createComponent({
+  tagName: "sl-divider",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   divider_default as default
 };

@@ -1,14 +1,16 @@
-import {
-  include_default
-} from "../../chunks/chunk.R7DRIHWZ.js";
-import "../../chunks/chunk.4OB3LWYB.js";
-import "../../chunks/chunk.XNEONNEJ.js";
-import "../../chunks/chunk.AG3WFFW2.js";
-import "../../chunks/chunk.VQ3XOPCT.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/include/include.js";
+var include_default = createComponent({
+  tagName: "sl-include",
+  elementClass: Component,
+  react: React,
+  events: {
+    onSlLoad: "sl-load",
+    onSlError: "sl-error"
+  }
+});
 export {
   include_default as default
 };

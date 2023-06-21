@@ -8,10 +8,8 @@ export default class SlRadio extends ShoelaceElement {
     value: string;
     size: 'small' | 'medium' | 'large';
     disabled: boolean;
+    constructor();
     connectedCallback(): void;
-    disconnectedCallback(): void;
-    private addEventListeners;
-    private removeEventListeners;
     private handleBlur;
     private handleClick;
     private handleFocus;

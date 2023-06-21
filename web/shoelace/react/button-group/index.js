@@ -1,12 +1,13 @@
-import {
-  button_group_default
-} from "../../chunks/chunk.O3A6FHBZ.js";
-import "../../chunks/chunk.AWXN6RUJ.js";
-import "../../chunks/chunk.XNCVUHYK.js";
-import "../../chunks/chunk.ROLL4627.js";
-import "../../chunks/chunk.BCEYT3RT.js";
-import "../../chunks/chunk.DUT32TWM.js";
-import "../../chunks/chunk.LKA3TPUC.js";
+import "../../chunks/chunk.6M63UXML.js";
+import * as React from "react";
+import { createComponent } from "@lit-labs/react";
+import Component from "../../components/button-group/button-group.js";
+var button_group_default = createComponent({
+  tagName: "sl-button-group",
+  elementClass: Component,
+  react: React,
+  events: {}
+});
 export {
   button_group_default as default
 };
