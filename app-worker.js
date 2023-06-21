@@ -1,8 +1,8 @@
-const cacheName = "app-" + "7e614336edb4ab46ade8708bb013dc6df1f931a5";
+const cacheName = "app-" + "bc70a46f5568db833f8cc13c98e5885017208f67";
 const resourcesToCache = ["/bybel","/bybel/app.css","/bybel/app.js","/bybel/manifest.webmanifest","/bybel/wasm_exec.js","/bybel/web/app.wasm","/bybel/web/bundle.css","/bybel/web/index.css","/bybel/web/logo-192.png","/bybel/web/logo-512.png","/bybel/web/resources/afr.txt","/bybel/web/resources/kjv.txt","/bybel/web/resources/tsk.txt","/bybel/web/shoelace/themes/light.css"];
 
 self.addEventListener("install", (event) => {
-  console.log("installing app worker 7e614336edb4ab46ade8708bb013dc6df1f931a5");
+  console.log("installing app worker bc70a46f5568db833f8cc13c98e5885017208f67");
 
   event.waitUntil(
     caches
@@ -28,7 +28,7 @@ self.addEventListener("activate", (event) => {
       );
     })
   );
-  console.log("app worker 7e614336edb4ab46ade8708bb013dc6df1f931a5 is activated");
+  console.log("app worker bc70a46f5568db833f8cc13c98e5885017208f67 is activated");
 });
 
 self.addEventListener("fetch", (event) => {
