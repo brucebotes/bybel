@@ -1974,7 +1974,10 @@
     </sl-icon-button>
   </div>
 </div> 
-<sl-dialog label="Soek 'n woord in die verse">
+<sl-dialog 
+  label="Soek 'n woord"
+  class="soek-dialog"
+>
   <sl-input
     autofocus
     clearable
@@ -2004,10 +2007,12 @@
       </sl-checkbox>
     </div>
   </div>
+  <!--
   <sl-button slot="footer" size="small" @click=${()=>this.dialog.hide()}>
     Exit
     <sl-icon slot="prefix" name="x-lg"></sl-icon>
   </sl-button>
+  -->
 </sl-dialog> 
 <interlinear-bible 
   rangesText=${this.reference!==""?this.reference:this._rangesText}
@@ -2065,13 +2070,19 @@
     .show-heading {
       translate: none;
     }
+    .soek-dialog {
+      --width: 20rem;
+    }
 
     @media screen and (max-width: 400px){
       .reference-input::part(input) {
-        width: 6.5rem;
+        width: 7rem;
       }
       .reference-controls{
-        gap: 0.5rem;
+        gap: 0.4rem;
+      }
+      .soek-dialog {
+        --width: 15rem;
       }
     }
   `,$([h({type:String,reflect:!0})],nt.prototype,"reference",2),$([R()],nt.prototype,"_rangesText",2),$([R()],nt.prototype,"_filterText",2),$([R()],nt.prototype,"_fullWords",2),$([R()],nt.prototype,"_caseSensitive",2),$([I("sl-dialog")],nt.prototype,"dialog",2),nt=$([T("bible-head")],nt);var _e=class extends lt{constructor(t){if(super(t),this.et=C,t.type!==J.CHILD)throw Error(this.constructor.directiveName+"() can only be used in child bindings")}render(t){if(t===C||t==null)return this.ft=void 0,this.et=t;if(t===D)return t;if(typeof t!="string")throw Error(this.constructor.directiveName+"() called with a non-string value");if(t===this.et)return this.ft;this.et=t;let r=[t];return r.raw=r,this.ft={_$litType$:this.constructor.resultType,strings:r,values:[]}}};_e.directiveName="unsafeHTML",_e.resultType=1;var Oi=xt(_e);var fn=(e,t=!1,r=!1)=>{let o=/(["'])(\\\1|.)*?\1/g,i=/[^\s"']+/g,s=e.match(o)||[],n=e.replace(o,"").match(i)||[],a=m=>m.substring(1,m.length-1),l=s.map(a),c=r?"":"i",d=t?"\\b":"",f=m=>new RegExp(d+m+d,c),p=[...l,...n].map(f);return m=>{let k=0;for(;p[k]&&p[k].test(m);)k++;return k===p.length}},zi=fn;var G=class extends H{constructor(){super();this.rangesText="";this.filterText="";this.fullWords=!1;this.caseSensitive=!1;this._verses=[];this._hashList=[];this._versionName="afr";this._altVersionName="kjv";this._onVerseClicked=r=>{let o=r.currentTarget;if(o){if(o.getAttribute("activated")!==null){o.removeAttribute("activated");let s=o.closest(".container");if(s){let n=o.nextSibling;s.removeChild(n)}return}else o.setAttribute("activated","");let i=o.dataset.hash;if(i){let s=kr(i,this._versionName,this._altVersionName),n=$r(s),a=document.createElement("tsk-refs");a.setAttribute("refs",n),o.after(a)}}}}firstUpdated(r){super.firstUpdated(r)}connectedCallback(){super.connectedCallback(),this.initialize()}disconnectedCallback(){this.destroy()}attributeChangedCallback(r,o,i){super.attributeChangedCallback(r,o,i),this._setVerses()}initialize(){let r=`${window.origin}${It}/web/resources/${this._versionName}.txt`;wr(this._versionName,r).then(()=>{r=`${window.origin}${It}/web/resources/${this._altVersionName}.txt`,wr(this._altVersionName,r).then(()=>{this._setVerses()}).catch(o=>console.log("Error loading bibles",o))}).catch(console.log)}updated(){this.shadowRoot.querySelectorAll(".ripple-box").forEach(r=>{r.addEventListener("mousedown",this.rippleEffect)})}rippleEffect(r){let o=this.getBoundingClientRect(),i=document.createElement("div"),s=getComputedStyle(this).overflow,n="rgba(255,255,255,0)",a="rgba(255,255,255,.3)",l=Math.sqrt(o.width*o.width+o.height*o.height)/10;this.style.overflow="hidden",i.style=`
