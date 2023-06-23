@@ -10,3 +10,10 @@ body {
   overflow: hidden;
 }
 
+/* cover the inset section on an Apple */
+@supports(padding:max(0px)){
+  body, header, footer {
+    padding-left: min(0vmin, env(safe-area-inset-left));
+    padding-right: min(0vmin, env(safe-area-inset-right));
+  }
+}

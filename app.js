@@ -5,7 +5,7 @@ var goappNav = function () {};
 var goappOnUpdate = function () {};
 var goappOnAppInstallChange = function () {};
 
-const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"/bybel","GOAPP_STATIC_RESOURCES_URL":"/bybel","GOAPP_VERSION":"1d6e60e77617772457d549555acd1d2680819adb"};
+const goappEnv = {"GOAPP_INTERNAL_URLS":"null","GOAPP_ROOT_PREFIX":"/bybel","GOAPP_STATIC_RESOURCES_URL":"/bybel","GOAPP_VERSION":"cdccfeef3fad60e77fa4764f9928604c4d863924"};
 const goappLoadingLabel = "Loading...";
 const goappWasmContentLengthHeader = "";
 
